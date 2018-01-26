@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="goNext()">页面跳转</button>
+    <button onclick="goThisPage()">跳转当前页</button>
+    <button onclick="goBack()">返回</button>
+    <button onclick="goForward()">前进</button>
+    <script>
+        // back
+        // forward
+        // go
+        // pushState
+        // replaceState
+        function goNext() {
+          /**
+           * @param 参数1：对象或者字符串 （传入参数）
+           * @param 参数2：字符串
+           * @param 参数3：字符串 （新页面的相对地址）
+           */
+          window.history.pushState({id:111}, 'my profile', '/profile')
+            console.log('goNext==========', window.history)
+        }
+        function goThisPage() {
+          window.history.replaceState({replace: 222}, 'my replacement', '/replace')
+        }
+        function goBack() {
+          console.log('back---->', window)
+          // window.history.back()
+          window.history.go(-1)
+
+        }
+        function goForward() {
+          window.history.forward(1)
+        }
+        window.addEventListener('popstate', function (e) {
+            console.log('popstate------', e.state)
+        })
+    </script>
+</body>
+</html>
