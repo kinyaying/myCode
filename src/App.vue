@@ -1,46 +1,64 @@
 <template>
   <div id="app">
     <div style="width: 200px;">
-      <NavMenu class="menu-demo" :menu="menus1"></NavMenu>
+      app.vue
     </div>
     <main class="content">
-      <router-view></router-view>
+      <Row>
+        <Col span="8">
+        <Menu :theme="theme2" accordion>
+          <Submenu name="1">
+            <template slot="title">
+              <Icon type="ios-paper"></Icon>
+              内容管理
+            </template>
+            <MenuItem name="1-1">文章管理</MenuItem>
+            <MenuItem name="1-2">评论管理</MenuItem>
+            <MenuItem name="1-3">举报管理</MenuItem>
+          </Submenu>
+          <Submenu name="2">
+            <template slot="title">
+              <Icon type="ios-people"></Icon>
+              用户管理
+            </template>
+            <MenuItem name="2-1">新增用户</MenuItem>
+            <MenuItem name="2-2">活跃用户</MenuItem>
+          </Submenu>
+          <Submenu name="3">
+            <template slot="title">
+              <Icon type="stats-bars"></Icon>
+              统计分析
+            </template>
+            <MenuGroup title="使用">
+              <MenuItem name="3-1">新增和启动</MenuItem>
+              <MenuItem name="3-2">活跃分析</MenuItem>
+              <MenuItem name="3-3">时段分析</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="留存">
+              <MenuItem name="3-4">用户留存</MenuItem>
+              <MenuItem name="3-5">流失用户</MenuItem>
+            </MenuGroup>
+          </Submenu>
+        </Menu>
+        </Col>
+      </Row>
+      <br>
+      <p>Change theme</p>
+      <RadioGroup v-model="theme2">
+        <Radio label="light"></Radio>
+        <Radio label="dark"></Radio>
+      </RadioGroup>
     </main>
   </div>
 </template>
 
 <script>
-import '@waimai/kangarooui-vue/dist/kangarooui-vue-m.js'
-import '@waimai/kangarooui-vue/dist/index-m.css'
-import NavMenu from './components/NavMenu'
+  // import {Menu} from './menu/index.js'
 export default {
   name: 'app',
   data() {
       return {
-          selectedPoi: {
-            wmPoiId: 1111
-          },
-          menus1: [{
-              icon: 'fa-custom-list',
-              text: '商品管理',
-              children: [
-                  {text: '简介', link: {path: '/profile'}},
-                  {text: '用戶', link: {path: '/user'}},
-                  {text: '登录', link: {path: '/login'}},
-                  {text: '首页', link: {path: '/home'}},
-                  {text: '默认', link: {path: '/#'}},
-                  {text: '默认', link: {path: '/#'}}
-              ]
-          },
-          {
-              icon: 'fa-custom-list',
-              text: '订单管理',
-              children: [
-                {text: '订单查询', link: {path: '/#'}},
-                {text: '订单导出', link: {path: '/#'}},
-                {text: '订单异步导出', link: {path: '/#'}}
-              ]
-          }]
+        theme2: 'dark'
       }
   },
   computed: {
@@ -57,7 +75,7 @@ export default {
     }
   },
   components: {
-    NavMenu
+
   }
 }
 </script>
